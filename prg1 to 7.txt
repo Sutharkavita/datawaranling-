@@ -1,0 +1,417 @@
+1. Write a program to implement linear search algorithm Repeat the experiment for different values of n. the number of element in the list to be searched and plot the graph.
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+int linear-search (int *arr, int n, int key)
+int i;
+for(i=0; i<n; i++)
+{ if (arr[i] == key){
+return i;
+}
+return -1;
+int main() {
+int n,i, key, *arr, repeat, result;
+printf ("Enter the number of elements:");
+scanf("%d", &n);
+a= malloc (n* sizef (int));
+printf ("In enter the elements of an arsay: ");
+for (i=0; i<n; i++)
+scanf("%d", & arr[i]);
+printf ("In Enter the key element to be searched: "); scanf("%d", & key);
+repeat= 1000000;
+clock_t start = clock();
+for (i=0; i < repeat; i++){
+result = linear_search (arr, n,key);
+clock_t end=clock();
+if (result != -1) {
+
+printf ("Key'd Found at Position %d", key, result);
+}
+ else { printf ("Key %d Not Found", key);
+}
+double time taken = ((double) end- start)/CLOCKS_PER_SEC *1000;
+
+printf("In Time taken to search a key element = %f ms \n", time taken);
+}
+
+
+2. Write a progsam to implement binary search algorithm. Repent the experiment for different values of n, the number of elements in the list to be searched.
+
+#include < aldio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+int binary-search (int *arr, int low, int high, int key)
+{
+while (low <=high) {
+
+int mid = low +(high-low)/2;
+
+if (arr[mid] == key) {
+
+return mid;
+}
+else if (arr[mid] <key){
+
+low = mid + 1;
+
+} else {
+
+high = mid-1;
+}
+}
+return -1;
+}
+int main () {
+
+int n, i, key, repeat, *arr, result;
+
+clock_t start, end;
+
+double time_taken;
+
+printf ("Enter the number of elements: ");
+
+scanf("%d", &n);
+
+arr= malloc (n* sizeof(int));
+printf("In Enter the elements of an array in
+ascending order: ");
+ for (i=0;i<n; i++)
+
+scanf("%d", &arr[i]);
+
+printf ("In Enter the key element to be searched:");
+
+scanf("%d", & key);
+
+repent = 1000000;
+
+start = clock();
+
+for(i=0; i< repeat; i++) {
+
+result = binary-search(arr, 0, n-1, key);
+
+end = clock();
+
+if (result != -1) {
+
+printf ("Key %d found at position %d", key, result); } 
+else {
+ printf(" Key %d Not found", key);
+}
+time taken = (double) end - start) / CLOCKS_PER_SEC *1000;
+
+printf ("'In Time taken to search a key element = %f ms In", time taken);
+}
+
+
+
+3. Write a program to solve towers of Hanoi problem and execute it for different number of disks
+
+#include <stdio.h>
+
+void toh (int, char, chas, chas);
+
+int count = 0;
+
+int main()
+
+char source = 's', temp='T', dest = '0';
+
+int ni
+
+printf ("Enter the number of disks :");
+
+scanf("%d", &n);
+printf(" Sequence is : \n");
+
+toh (n, source, limp, dest);
+
+printf (" The Number of Moves : %d", count);
+
+}
+
+void main(){
+int n, char source, char temp, chas dest;
+
+if (n>0)
+
+{
+
+toh (n-1, Source, dest, bimp);
+
+printf("Move Disk %d %c%c In", n, source, dest);
+
+count++;
+toh (n-1, temp, source, dest);
+}
+
+
+4. WAP to sort a given set of numbess using delection Sort algorithm Repeat the experiment for different values of n, the number of elements in the list to be sorted The elements can be read from a file os can be generated
+
+wing randem number generator. #include <stdio.h>
+
+#include<conio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+int minimum (int a[], int k, int n);
+
+int main()
+
+int i, *arr, k, n, loc,loc= 0 , temp;
+
+clock-t ind, start
+
+double time taken;
+
+srand (time (0));
+
+chscr();
+
+printf ("Entes the number of elements: ");
+
+scanf("%d", &n);
+
+arr = malloc (n *sizeof(int));
+
+// printf("In Entes the array elements \n");
+
+// for ( i + 0 ; i<n; i++)
+
+// scanf("%d", &a[i]);
+
+printf(" in Populating the array with random number...\n');
+
+for( i= 0 ; i< n ; i++)
+
+arr[i] = rand() % 100;
+
+start = clock();
+
+for( k = 0 ; k <= n ; k++)
+{
+
+loc = minimum (arr, k,n);
+
+temp=arr[k] ;
+
+a[k] = a [loc];
+
+a[loc]= temp;
+
+end = clock();
+
+time faken = ((double) end - start)/ CLOCKS PER SEC*1000;
+
+}
+int minimum (int a[], int k, int n)
+
+int loc, j, minز
+
+min = a[k];
+
+loc = k;
+
+for(j=k+1; j<=n-1;j++)
+if (min > a[j])
+
+min = a[j]; 
+loc=j;
+return (loc);
+}
+
+
+5. virile a program to find a using (a) Brute-force base algorithm (b) Divide & conquer based algorithm.
+
+#include <stdio.h>
+
+int power bruteforce (int a, int n) {
+
+int i, result=-1;
+
+for(i=0;i<n;i++){
+
+result *= a;
+}
+return result;
+}
+
+int power dwide conques (int a, int n) {
+
+if (n==0)
+
+return 1;
+
+else 
+if (n %2==0) 
+return power divide conques (a* a,n/2);
+
+else
+
+return a * power duide_congues (a*a,n/2);
+
+int main()
+{
+
+int a, n, result brute, result dürde conquest; 
+printf ("Enter the value of a and n:");
+
+scanf ("%d %d", &a, &n);
+
+result brute = power bruteforce (a, n);
+
+result divide conquer = power-dwide (a, n);
+printf("Result using brute force: %d\n", result brute); 
+
+printf("Result using dirde and conquer: %d\n",result durde conquer);
+}
+
+
+
+6.Wide a program to sort a juen set of numbers waing quick sort algorithen. Repeat the experiment for diffe rent values of n. the numbers of elements in the list to be sorted.
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+int partition (int A[], int low, int high) {
+
+int pivot, j, temp,i;
+
+pivot low;
+
+i = low;
+
+j = high;
+
+while (i-j){
+
+while (i <high && A[i]<= A[pivot])
+
+i++;
+ while (A[j] > A [pivot])
+
+j--;
+if(i<j)
+{
+temp = A[i];
+
+A[i]= A[j];
+
+A[j] = temp;
+}
+}
+temp = A[pivot ];
+ A[pivot ] = A[j];
+
+A[j] = temp;
+
+return j;
+}
+
+void quicksort (int [A], int low, int high)
+{
+if (low <high) {
+
+int j = pastition (A, low, high);
+
+quicksort (A, low, j -1);
+ quicksort (A,j+1 , high);
+
+}
+
+}
+int main()
+{
+int i, n, A;
+
+clockt start, end;
+
+double time takın;
+
+srand (time (0));
+
+printf("Enter the number of elements: ");
+
+Scarf ("%d", &n);
+ A= malloc (n* sizeof (int));
+
+printf ("In Populating the array with random numbers... In");
+
+for (i=0; i<n; i++)
+
+A[i] = rand()% 1000;.
+
+start clock();
+
+quickdort (A, O, n-1);
+ end = clock();
+
+time taken = ((double) end-start)/CLOCKS PER SEC*1000;
+
+printf("In The time taken to sort the array = %f ms \n", time taken);
+}
+
+
+7. Write a program to find binomial coefficient E(n,k) (where n and k arc integers and nxk] using bride force algorithm and also dynamic
+
+programming based algorithm- 
+#include <stdio.h>
+
+int factorial (int n) {
+
+int i, fact=1;
+ for( i = 2 ;i<=n,i++)
+ fact *= 1
+
+return fact;
+}
+int binomial Coeff-bruteforce (int n, int k){
+ return factorial (n) / factorial (k) * fucterial(k-n);
+
+}
+
+int boomial Coeff-DP (int n, int k) {
+
+int c[20][20];
+
+int i,j;
+
+for (i = 0; i<n;i++)
+for (j = 0 ;j<=((i<k)?i:k);j++){
+
+if(j==0 ||j =  i )
+c[i][j]=1;
+else 
+ 
+
+C[i][j] = C[i - 1][j -1] + C[i - 1][j];
+}
+}
+return C[n][k];
+}
+int main(){
+int n,k, resultBF, result DP;
+
+printf("Enter the value of n and k: ");
+ scanf ("%d %d", &n, &k);
+
+result BF= binomial Coeff-brute Force(n,k); 
+result DP=binomial Coeff DP(n,k);
+
+printf(" Binomial coefficient (Brute Force): %d \n", ecsult BF);
+
+printf(" Binomial coefficient (Dynamic Programmin ):%d\n", result DP);}
