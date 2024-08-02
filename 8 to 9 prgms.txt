@@ -1,0 +1,595 @@
+WAP to implement Floyod's algorithm and find the lengths of the shortest path from every pairs of
+
+vertices in a weighted graph 
+#include <stdio.h>
+
+#include<stdlib.h>
+
+#define INF 99
+
+void printsolution (int v, int **D) {
+
+int i,j;
+
+printf("The following matrix shows the shorlut distances" between every pair of
+
+vertices\n");
+
+for(i=0; i< V; i++){
+ for (j = 0; j < V; j++) {
+
+if (D[i][j] = INF)
+ printf ("%7s", "INF");
+else 
+
+printf ("%7d", D[i][j]);
+}
+
+printf("\n");
+}
+}
+void floyd (int V, int **c) {
+
+int i,j,k;
+
+int * D = (int **) malloc (V*sizeof(int);
+
+for (i=0; i<V; i++)
+d [i] = (int*) malloc (V*sizeof(int));
+
+for (i=0; j<V; j++) 
+for (j = 0; j<V; j++)
+d[i][j]=c[i][j];
+
+for(k=0; k <V; k++) {
+
+for (i=0; i<V;i++){
+ for (j=0; j<v, j++){
+
+if (d[i][j] >(d [i] [k] + d[k][j]))
+ D[i][j] = D[i][k][K][J];
+}}}
+printsolution (V,D);
+}
+int main()
+{
+int i,j, V;
+
+int **C= (int**) malloc(V* sizeof (int*));
+ printf 1" Enter the number of vertices: ");
+
+scanf("%d", &V);
+ for(i = 0; i <v;i++)
+c[i] = (int*)malloc(V* sizeof(int));
+
+printf("Enter the cost matrix : In"); 
+printf ("[Enter 99 for infinity]\n");
+ printf (" [Enter O for cost(i,i)\n");
+for (i=0; i<V;i++)
+for(j=0;j<v;j++)
+  scanf("%d", &C[i][j]);
+
+floyd (VC);
+}
+
+
+9. Write a Program to evaluate polynomial weing brute- force algorithm and using harness sute and compare
+
+their performance #include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+#include <math.h>
+
+double BF (int * coeff, int n, double x) {
+
+double sum = 0.0;
+
+int i,
+
+for(i=0; i<=n; i++١{
+
+sum += coff [i]* pow (x,i);
+}
+return sum;
+}
+
+double hornes Rule (int * coeff, int n, double x){
+
+double result = coeff [n];
+
+int i;
+
+for(i=n-1; i>= 0; i--) {
+
+result = result * x + coeff [i];
+}
+return result;
+}
+int main()
+{
+int i,n;
+
+double x, time used,  BF result, HR result,CLOEKS PER SEC;
+
+
+clockt start, end;
+int* coeff = malloc ((n+1)* sizeof (int));
+ printf ("Enter the the degree of the polynomial:");
+scanf("%d", n)
+
+printf("sates the coefficients from highest degree to lowest: In");
+
+for (i= n; i>=0; i--){
+
+scanf("%d", & coff [i]);
+}
+printf("Enter the value of x: ");
+
+scanf("%lf",&x);
+
+start = clock();
+
+SF result = BF( coeff, n.x);
+
+end = clock();
+
+bime used = (( double) end -start)/CLOCKS PER SEC;
+
+printf (" Brute force result : %.2f, time used:%f
+
+second \n", BF sesult, time used);
+
+start colock();
+
+HR result = hornerhule (coeff, n,x ); 
+end =clock ();
+
+time-used-=((double) end -start)/CLOCKS. PER SEC
+
+printf ("Hornes rule result: %.2f, time used:%f secends \n", HR scsult, time used);
+}
+
+10. Write a progsam to solve the string matching problem using Boyer-Moore approach.
+
+#include<stdio.h>
+
+#include <string.h>
+
+#define MAX CHARS 266
+
+int max (int a, int b) {
+return(a>b)?a:b);
+}
+
+void bad Char Heuristic (chas *str, int size, int badshas [MAX CHARST])
+{
+int i;
+
+for(i=0; i< MAX-CAARS; i++) 
+bad char [i] = - 1;
+
+for (i=0; i< size; i+1)
+
+badehar [(int) sth [i]] = i;
+}
+void patternsearch (char* text, char *pat) {
+
+int m = strlen(pat); 
+int n = strlen (text);
+
+int badchar [MAX_CHARS];
+
+int s = 0 ;
+
+bad Char Heuristic (pat, m, badchar);
+
+while ( s<= (n - m) ){
+int j = m - j
+ while(j>=0 && pat [j] == test (s+j])
+j--;
+if(j < 0) {
+printf ("'n Pattern occurs of position-=%d",s);
+ s += (s + m < n) ? m- bad char [text [s+m]]:1;
+}
+else
+
+S+ = max(1, j- badchas [text [s+j]);
+}
+}
+int main()
+{
+char text [100];
+
+char pat [100];
+
+printf ("Enter the tent: ");
+
+gets (text);
+
+text [strlen (text)-1] = '\0';
+
+printf ("Enter the pattern: ");
+
+gets (pat);
+
+printf [strlen(pat)-1] = '\0';
+
+patternsearch (text, pat);
+
+}
+
+11. WAP to solve the string matching problem weing
+
+KMP algorithm
+ #include <stdio.h>
+
+#include <string.h>
+
+void compute LPS Array (char* pat, int M, int *lps);
+ void KMPsearch (chas *pat, char * txt) {
+
+int M= strlen (pat); 
+int N= strlen(txt);
+
+int lps [20];
+
+int i=0;
+
+
+int j = 0;
+
+computaarrsay (pat, M, lps);
+while(i<n){
+
+if (pat [j] == txt [i]){
+
+j++;
+i++;
+}
+if (j==M){
+
+printf("Found pattern at index %d\n",i-j);
+
+
+j = lps[j - 1];
+
+} else if (i<N && pat [j] != txt(i] ){
+
+if(j! = 0)
+
+j = lps[j - 1];
+else
+i=i+1;
+}
+}
+}
+void compute LRB Array (char* pat, int M, int * lps){
+
+int len = 0; lps [0] = 0;
+
+int i=1;
+ while (i< M) {
+
+if (pat [i]== pat [len]){
+len ++;
+ lps [i] = len;
+i++;
+} else {
+
+if (len !=0) { 
+len = lps [len-1];
+}
+else {
+ lps[i] = 0;
+ i++;
+}
+}
+}
+}
+int main () {
+
+char txt [100];
+
+chas pat[100];
+
+printf("Enter the text: ");
+
+gets (txt);
+
+txt [strlen (txt)-1]='\0';
+
+printf("Entes the pattern: ");
+
+gets (pat);
+
+pat[strlen (pat)-1] = '\0';
+
+KMPsearch (pat, text); }
+
+
+12. Write a program to implement BF's traversal algorithm
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#define MAX 100
+
+int C[MAX][MAX];
+
+int visited [MAX];
+
+int queue [MAX];
+
+int زn;
+
+void BFS (int v){
+
+int front = 0, rear = -1, i; 
+
+visited[v]=1;
+ queue [++ rear ]= V;
+
+while (front<= rear) {
+
+v=queve [front ++];
+
+printf ("%d",v); 
+for (i=1; i<=n; i++){
+
+if (c[v][i] == 1 && visited [i] == 0) {
+
+queue [++rear]=i;
+
+visited [i]=1;
+
+}
+
+}
+}
+}
+
+int main()
+{
+int i, j, V;
+
+printf ("Enter the number of vertices in the graph: ");
+scanf ("%d", &n);
+
+printf("enter the cost matrix of the graph: "\n);
+ for(i=1; i<=n; i++){
+
+for(j=1; j<=n; j++)
+
+scanf("%d", &c[i][j]);
+}
+for(i=1; i<=n;i++)
+ visitedd [i]=0;
+
+printf(" Entes the starting vertex:");
+
+scarf ("%d", & v);
+
+printf (" BFd traversal of the graph is: ");
+
+BFs(v);}
+
+
+13. WAR to find minimum sparning tree of a given Graph using Prins Algorithm.
+
+#include <stdio.h>
+
+#include <limits.h>
+
+#include <stdlib.h>
+
+int minkey (int key [], int mstset [], int n){ 
+int min =INT_MAX, min index;
+
+int V;
+
+for (v=0;v<n;v++)
+ if (mstset [V] == 0&&key [v] <min) 
+min = key [v], min_index = v;
+
+return min_index;
+}
+int printMST (int parent[], int **c, int n) {
+
+int total weight=0; int i;
+
+printf(" enter Endge Weight \n");
+for (i=1; i<n; i++) {
+ printf ("%d-%d %d \n", parent [i]+1, i+1, c[i] [parent[i]]);
+ total weight += c[i][ parent [i]];
+}
+return totaltiWeight;
+
+}
+
+void primMST (int **c, int n) {
+
+int* parent = malloc (n* sizeof(int));
+
+in* key = malloc(n* sizeof (int));
+ int* mstset = malloc (n* sizeof (int)); 
+int i, count, u, v, total Weight;
+for (i=0; i<n; i++)
+
+
+key [i] = INT_MAX, matset [i] = 0;
+
+kay [0] = 0;
+
+parent [0]=-1;
+
+for(count = 0 ;count <n-1; count++){
+
+u = minkey (key, mstet,n);
+ mstset [u] = 1
+
+for (v = 0; v<n; v++)
+
+if (c[u][v] && matset [v] ==0&& c[u] [v] <key [v])
+ parent [v] = u, key [v] = c[u][v];
+}
+totalbleight = printMST (parent, c,n);
+ printf("Total cost of the minimum sparning tree:%d\n", totalWeight);
+}
+int main()
+{
+int n,i,j;
+
+int** c = malloc (n *sizeof(int));
+
+printf (" Enter the number of vertices:");
+
+Scanf("%d", &n);
+
+for (i=0; i<n; i++) {
+
+c(i] = malloc(n* dizeof (int));
+}
+printfEnter the cost adjacency matrix:\n");
+
+for i = 0 ; i<n; i++) {
+
+for j = 0; j<n; j++) {
+
+scanf("%d", &c[i][j]);
+}}
+Primmst(c,n);
+}
+
+
+
+14(a). Write a program to obtain the topological ordering of vertices in as given geuph.
+
+#include <stdio.h>
+
+int main() 
+{
+
+
+int n, count=0, c[10] [10], indeg [10], flag [10],i,j,k;
+printf ("Enter the no. of vertices:");
+
+scanf("%d", &n); 
+for (i=0; i<n; i++)
+ indey [i] = 0, flag [i]=0; 
+printf("Enter the cost matrin: \n");
+ for (i=0; i<n; i++)
+
+ for(j=0;j<n; j++)
+ scanf("%d", &c[i][j]);
+ for (i=0; i<n; i++) 
+for (j=0;j<n; j++)
+ indeg[i] += c[j][i]; 
+printf "The topological order is :\n");
+ while (count<n){
+ for (k=0;k<n; k++)
+ if ((indag [k] = 0) &&(flag [k]= = 0))\
+{ printf ("%3d", k+1); 
+flag[k] = 1, count++;
+ for(i=0; i<n; i++)
+ if (c[k][i]==1)
+ indeg [i]--;
+}}}
+
+
+
+14(b) WAP to compute transitive closure of a given Warshall's algorithm.
+
+directed groph using #include <stdio.h>
+
+void warshalls (int C[] [10], int n){
+
+int i,j,k;
+ for(k = 0; k<n; k++){
+ for (i=0; i<n; i++){ 
+for (j=0; j<n;j++)
+ if (c[i][j]||c[j][k] && c[k][j])) 
+c[i][j]=1;
+}
+}
+}
+
+printf ("The transitive closure of the graphireth's:\n);
+ for( i=0; i<n;i++) { 
+for (j=0;j<n; j++)
+ printf ("%d", c[i][j]);
+ printf("\n"); १
+}}
+int main ()
+{
+
+int c[10 ] [10], n,i,j;
+printf ("Enter the number of vertices:");
+ scanf("%d", &n);
+
+printf("Enter the adjiancency cost martin: \n");
+ for (i=0; i<n; i++) 
+for(j=0;j<n;j++)
+ Scanf ("%d", & c[i][j]);
+
+wirshalls (c,n);
+
+}
+
+
+
+write a program to find subset of a given set. S- & $1.52 sms of in positive ndegers whose sum is equal example if s to given positive integer de 1. For S= $1,2,5,6,83 and d' = 9 then twe solutions 21,2,63 and $1. 83. A suitable message is to be displayed if given problem dosd't have solution
+
+#indude <stdio.h>
+
+int w[10], d, n, count, x [10],i;
+
+void sum of subsets (int s, int k, int r)
+
+{
+printf ("'m Subset x. d = u ++count);
+for ( i = 0 i <= k ; i++)
+ if (x[i]) 
+printf ("%d", w[i]);
+}
+}
+else if (s+ w [k] + w[k+1] <= d)
+{
+sum-of-subsets (s + w[k], k+1, r - w[k] );
+} 
+ if (s +r- w[k] > =d)  && (s+w[k+1]<=d))
+{
+x[k]=0;
+sum of subsets (s, k+1, r- w[k]);
+}}
+int main()
+{
+int sum = 0, k;
+
+printf ("Enter the number of elements: ");
+ scanf("%d", &n);
+
+printf ("Enter the elements in ascending order : ");
+ for (i=0; i<n; i++)
+{
+
+scanf("%d", & w[i]);
+ printf ("Enter the sum :");
+ scanf("%d", &d); 
+for (i=0; i<n; i++)
+{
+x[i]=0;
+ sum = sum + w[i];
+}
+ if (sum < d || w[0]>d)
+ printf ("In No subset possible In");
+}
+ else
+{
+count = 0;
+
+Sum of subsets (0,0, sum);
+}}
